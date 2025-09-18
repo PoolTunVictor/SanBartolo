@@ -1,17 +1,25 @@
-# Formularios y HTTP (ya vienen con Angular, solo debes importarlos)
-npm install @angular/forms @angular/common
 
-# ng-bootstrap (carousel, rating, etc.)
-ng add @ng-bootstrap/ng-bootstrap
+FROM node:20 AS build
 
-# Google Maps
-ng add @angular/google-maps
 
-# Angular Material (incluye datepicker, modales, tablas, etc.)
-ng add @angular/material
+WORKDIR /app
 
-# Opcional si usas Cloudinary desde Angular
-npm install @cloudinary/url-gen @cloudinary/angular
 
-# SweetAlert2 (alertas bonitas)
-npm install sweetalert2
+COPY package*.json ./
+RUN npm install
+
+
+COPY . .
+RUN npm run build -- --configuration=production
+
+
+FROM nginx:alpine
+
+
+COPY --from=build /app/dist/frontend-temp/browser /usr/share/nginx/html
+
+
+EXPOSE 80
+
+# Comando por defecto
+CMD ["nginx", "-g", "daemon off;"]
