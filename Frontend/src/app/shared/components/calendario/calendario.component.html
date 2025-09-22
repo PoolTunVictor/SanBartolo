@@ -1,0 +1,44 @@
+<div class="calendar-container">
+  <!-- Encabezado con el mes -->
+  <div class="calendar-header">
+    <h2>{{ mes }}</h2>
+  </div>
+
+  <!-- Tabla de días -->
+  <table class="calendar">
+    <tbody>
+      <tr *ngFor="let fila of [0,1,2,3,4]">
+        <ng-container *ngFor="let col of [1,2,3,4,5,6,7]">
+          <td *ngIf="fila * 7 + col <= 31"
+              (click)="seleccionar(fila * 7 + col)" 
+              [ngClass]="{'has-reserva': getReservas(fila * 7 + col).length > 0}">
+            
+            <div class="day-number">
+              {{ fila * 7 + col }}
+            </div>
+
+            <div *ngFor="let r of getReservas(fila * 7 + col)" class="reserva-label">
+              {{ r.nombre }} ({{ r.horario }})
+            </div>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal de detalle de reservas -->
+  <div class="modal" *ngIf="reservasDelDia.length > 0">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarDetalle()">&times;</span>
+      <h3>Reservas del Día</h3>
+      
+      <div *ngFor="let r of reservasDelDia" class="reserva-detalle">
+        <p><strong>Nombre:</strong> {{ r.nombre }}</p>
+        <p><strong>Zona:</strong> {{ r.zona }}</p>
+        <p><strong>Horario:</strong> {{ r.horario }}</p>
+        <p><strong># Personas:</strong> {{ r.personas }}</p>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>

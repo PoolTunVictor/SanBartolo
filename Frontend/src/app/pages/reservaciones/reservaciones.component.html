@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <!-- Izquierda -->
+  <div class="left">
+    <img src="assets/Principal.jpeg" alt="banner" class="banner" />
+    <app-calendario 
+      [reservaciones]="reservaciones"
+      (diaSeleccionado)="seleccionarDia($event)">
+    </app-calendario>
+  </div>
+
+  <!-- Derecha -->
+  <div class="right">
+    <h2 class="title">RESERVACIONES</h2>
+
+    <form (ngSubmit)="guardar()">
+      <label>Nombre:</label>
+      <input type="text" [(ngModel)]="nueva.nombre" name="nombre" required />
+
+      <label>Zona:</label>
+      <select [(ngModel)]="nueva.zona" name="zona">
+        <option>Terraza</option>
+        <option>Dentro del local</option>
+      </select>
+
+      <label>Horario:</label>
+      <select [(ngModel)]="nueva.horario" name="horario">
+        <option *ngFor="let h of getHorariosDisponibles()">{{h}}</option>
+      </select>
+
+      <label># de Personas:</label>
+      <select [(ngModel)]="nueva.personas" name="personas">
+        <option *ngFor="let n of [1,2,3,4,5,6,7,8]">{{n}}</option>
+      </select>
+
+      <p><b>Día seleccionado:</b> {{nueva.dia || 'Ninguno'}}</p>
+
+      <button type="submit">Reservar</button>
+    </form>
+  </div>
+</div>
