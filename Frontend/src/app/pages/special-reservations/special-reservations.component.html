@@ -1,38 +1,77 @@
 <div class="special-reservations">
-  <h1>Eventos Especiales</h1>
-  <img src="assets/icon.png" alt="Logo del Restaurante" class="logo" width="150">
+  <!-- Encabezado con logo y título -->
+  <div class="header-container">
+    <img src="assets/logo.png" alt="Logo del Restaurante" class="logo">
+    <h1>Eventos Especiales</h1>
+  </div>
 
- 
-  <div class="events">
+  <!-- Lista de eventos -->
+  <div class="events" *ngIf="!selectedEvent">
     <div class="event-card" *ngFor="let event of events">
+      <img [src]="event.image" alt="{{ event.name }}" class="event-image">
       <h2>{{ event.name }} - {{ event.date }}</h2>
       <p>{{ event.description }}</p>
       <button (click)="selectEvent(event)">Ver Paquetes</button>
     </div>
   </div>
 
-
+  <!-- Paquetes del evento seleccionado -->
   <div *ngIf="selectedEvent" class="packages">
-  <h2>Paquetes para {{ selectedEvent.name }}</h2>
-  
-  <div class="packages-row">
-    <div class="package-card" *ngFor="let pkg of selectedEvent.packages">
-      <h3>{{ pkg.name }}</h3>
-      <p>Incluye: {{ pkg.entry }}, {{ pkg.main }}, {{ pkg.drink }}, {{ pkg.dessert }}</p>
-      <p><strong>Precio: ${{ pkg.price }}</strong></p>
-      <button (click)="reserve(pkg)">Reservar</button>
+    <h2>Paquetes para {{ selectedEvent.name }}</h2>
+    <div class="packages-row">
+      <div class="package-card" *ngFor="let pkg of selectedEvent.packages">
+        <img [src]="pkg.image" alt="{{ pkg.name }}" class="package-image">
+        <h3>{{ pkg.name }}</h3>
+        <p>Incluye: {{ pkg.entry }}, {{ pkg.main }}, {{ pkg.drink }}, {{ pkg.dessert }}</p>
+        <p><strong>Precio: ${{ pkg.price }}</strong></p>
+        <button (click)="reserve(pkg)">Reservar</button>
+      </div>
     </div>
   </div>
-</div>
 
-
+  <!-- Menú exclusivo del evento -->
   <div *ngIf="selectedEvent" class="menu">
     <h2>Menú exclusivo</h2>
     <ul>
       <li *ngFor="let item of selectedEvent.menu">{{ item }}</li>
     </ul>
-
+    
     <button (click)="selectedEvent = null">Ver solo Eventos Especiales</button>
+  </div>
+</div>
 
+<!-- Modal de Reservación -->
+<div *ngIf="showReservationModal" class="modal-overlay">
+  <div class="modal">
+    <h2>Reservar {{ selectedPackage?.name }}</h2>
+    <form (ngSubmit)="confirmReservation()">
+      <label for="name">Nombre de la reservación:</label>
+      <input type="text" id="name" [(ngModel)]="reservationData.name" name="name" required>
+
+      <label for="people">Número de personas:</label>
+      <input type="number" id="people" [(ngModel)]="reservationData.people" name="people" min="1" required>
+
+      <label for="time">Hora:</label>
+      <select id="time" [(ngModel)]="reservationData.time" name="time" required>
+        <option value="" disabled selected>Seleccione una hora</option>
+        <option value="7:00 PM">7:00 PM</option>
+        <option value="7:30 PM">7:30 PM</option>
+        <option value="8:00 PM">8:00 PM</option>
+        <option value="8:30 PM">8:30 PM</option>
+        <option value="9:00 PM">9:00 PM</option>
+        <option value="9:30 PM">9:30 PM</option>
+        <option value="10:00 PM">10:00 PM</option>
+      </select>
+
+      <div class="modal-buttons">
+        <button type="button" (click)="closeModal()">Cancelar</button>
+        <button type="submit">Confirmar</button>
+      </div>
+    </form>
+
+    <!-- Mensaje de confirmación o error -->
+    <div *ngIf="confirmationMessage" [ngClass]="{'confirmation-message': true, 'error': isError}">
+      {{ confirmationMessage }}
+    </div>
   </div>
 </div>

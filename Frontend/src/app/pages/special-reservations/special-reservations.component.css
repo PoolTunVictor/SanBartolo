@@ -1,14 +1,45 @@
-
 .special-reservations {
+
   padding: 30px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #b1c8e6, #03536c);
   min-height: 100vh;
   text-align: center;
 }
+
+.header-container {
+  position: relative;      /* Permite que el logo sea absoluto */
+  text-align: center;      /* Título centrado */
+  margin-bottom: 30px;
+}
+
+.header-container .logo {
+  position: absolute;      /* Logo fuera del flujo normal */
+  left: 0;                 /* Alineado a la izquierda */
+  top: 50%;                /* Centrado vertical */
+  transform: translateY(-50%);
+  width: 200px;            /* Tamaño grande pero controlado */
+  height: auto;
+}
+
+.header-container h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  .header-container .logo {
+    width: 120px;          /* Reducimos tamaño en móviles */
+  }
+  .header-container h1 {
+    font-size: 1.8rem;
+  }
+}
+
 .logo {
-  width: 150px;      
-  height: 150;
+  width: 250px;      
+  height: auto;
   display: block;
   margin: 0 auto 30px auto; 
 }
@@ -36,7 +67,20 @@
   width: 280px;
   box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.event-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
 
 .event-card:hover {
   transform: translateY(-5px);
@@ -80,8 +124,8 @@ button:hover {
 .packages-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;   /* si no caben en una fila, bajan */
-  gap: 20px;         /* espacio entre las tarjetas */
+  flex-wrap: wrap;
+  gap: 20px;
   margin-top: 20px;
 }
 
@@ -89,13 +133,23 @@ button:hover {
   background: #ffffff;
   border-radius: 16px;
   padding: 20px;
-  width: 280px; /* más compacto para que entren más en una fila */
+  width: 280px;
   box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
   text-align: center;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .package-card:hover {
   transform: scale(1.05);
+}
+.package-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
 }
 
 .package-card h3 {
@@ -103,7 +157,7 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Menú exclusivo */
+
 .menu {
   margin-top: 40px;
   background: #fff;
@@ -137,4 +191,84 @@ button:hover {
 
 .menu li:hover {
   background: #e2e8f0;
+}
+
+/* ----------------- MODAL ----------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  width: 400px;
+  max-width: 90%;
+  text-align: left;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9);}
+  to { opacity: 1; transform: scale(1);}
+}
+
+.modal h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.modal label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.modal input, .modal select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 14px;
+}
+
+/* Mensaje de confirmación o error */
+.confirmation-message {
+  background: #d4edda;
+  color: #155724;
+  border: 2px solid #c3e6cb;
+  padding: 15px;
+  margin: 10px auto;
+  border-radius: 12px;
+  font-weight: bold;
+  text-align: center;
+  max-width: 500px;
+  white-space: pre-line;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.confirmation-message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 2px solid #f5c6cb;
 }
