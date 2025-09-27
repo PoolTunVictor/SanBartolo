@@ -1,9 +1,8 @@
 <div class="special-reservations">
   <h1>Eventos Especiales</h1>
-   <img src="assets/logo.png" alt="Logo del Restaurante" class="logo" width="150">
+  <img src="assets/Logo.png" alt="Logo del Restaurante" class="logo" width="150">
 
-
-  <!-- Lista de eventos -->
+ 
   <div class="events">
     <div class="event-card" *ngFor="let event of events">
       <h2>{{ event.name }} - {{ event.date }}</h2>
@@ -12,7 +11,7 @@
     </div>
   </div>
 
-  <!-- Paquetes del evento seleccionado -->
+
   <div *ngIf="selectedEvent" class="packages">
   <h2>Paquetes para {{ selectedEvent.name }}</h2>
   
@@ -26,7 +25,7 @@
   </div>
 </div>
 
-  <!-- Menú exclusivo -->
+
   <div *ngIf="selectedEvent" class="menu">
     <h2>Menú exclusivo</h2>
     <ul>
