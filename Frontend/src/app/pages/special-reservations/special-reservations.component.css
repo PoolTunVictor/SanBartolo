@@ -2,9 +2,15 @@
 .special-reservations {
   padding: 30px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f7f8fa, #e2e8f0);
+  background: linear-gradient(135deg, #b1c8e6, #03536c);
   min-height: 100vh;
   text-align: center;
+}
+.logo {
+  width: 150px;      
+  height: 150;
+  display: block;
+  margin: 0 auto 30px auto; 
 }
 
 
@@ -71,18 +77,25 @@ button:hover {
   margin-top: 40px;
 }
 
+.packages-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;   /* si no caben en una fila, bajan */
+  gap: 20px;         /* espacio entre las tarjetas */
+  margin-top: 20px;
+}
+
 .package-card {
   background: #ffffff;
   border-radius: 16px;
   padding: 20px;
-  margin: 15px auto;
-  width: 350px;
+  width: 280px; /* más compacto para que entren más en una fila */
   box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
+  text-align: center;
 }
-
 .package-card:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .package-card h3 {
