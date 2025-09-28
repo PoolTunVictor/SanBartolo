@@ -1,7 +1,20 @@
+<!-- Header -->
+<header class="global-header">
+  <div class="logo-container">
+    <img src="assets/logo.png" alt="Logo San Bartolo">
+    <h1>SAN BARTOLO</h1>
+  </div>
+  <nav>
+    <a href="#">Menú</a>
+    <a href="#">Comentarios</a>
+    <a href="#">Reservaciones</a>
+  </nav>
+</header>
+
+<!-- Contenedor principal -->
 <div class="special-reservations">
-  
+  <!-- Título de eventos -->
   <div class="header-container">
-    <img src="assets/logo.png" alt="Logo del Restaurante" class="logo">
     <h1>EVENTOS ESPECIALES</h1>
   </div>
 
@@ -45,6 +58,11 @@
   </div>
 </div>
 
+<!-- Footer -->
+<footer class="global-footer">
+  © 2025 SAN BARTOLO - Todos los derechos reservados
+</footer>
+
 <!-- Modal de Reservación -->
 <div *ngIf="showReservationModal" class="modal-overlay">
   <div class="modal">
@@ -64,8 +82,6 @@
         <option value="8:00 PM">8:00 PM</option>
         <option value="8:30 PM">8:30 PM</option>
         <option value="9:00 PM">9:00 PM</option>
-
-  
       </select>
 
       <div class="modal-buttons">
@@ -74,7 +90,8 @@
       </div>
     </form>
 
-    <div *ngIf="confirmationMessage && showReservationModal" [ngClass]="{'confirmation-message': true, 'error': isError}">
+    <div *ngIf="confirmationMessage && showReservationModal" 
+         [ngClass]="{'confirmation-message': true, 'error': isError}">
       {{ confirmationMessage }}
     </div>
   </div>

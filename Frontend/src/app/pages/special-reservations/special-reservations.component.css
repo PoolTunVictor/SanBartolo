@@ -1,57 +1,100 @@
+/* ------------------- RESET Y CONTENEDOR GENERAL ------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ------------------- HEADER NORMAL ------------------- */
+.global-header {
+  position: relative; /* ya no es fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #145971;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+  height: 80px; /* alto fijo */
+  z-index: 1000;
+}
+
+.global-header .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.global-header img {
+  width: 60px;
+  height: auto;
+}
+
+.global-header h1 {
+  font-size: 1.8rem;
+  color: #000000;
+  margin: 0;
+}
+
+.global-header nav {
+  display: flex;
+  gap: 20px;
+}
+
+.global-header nav a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.global-header nav a:hover {
+  color: #ba940b;
+}
+
+/* ------------------- FOOTER NORMAL ------------------- */
+.global-footer {
+  position: relative; /* ya no es fixed */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 30px;
+  background: #145971;
+  text-align: center;
+  color: #000000;
+  font-size: 0.9rem;
+  box-shadow: 0px -6px 15px rgba(0,0,0,0.1);
+  height: 50px; /* alto fijo */
+}
+
 /* ------------------- CONTENEDOR GENERAL ------------------- */
 .special-reservations {
-
   padding: 30px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* ya no hace falta padding-top porque el header no es fijo */
   background: linear-gradient(135deg, #b1c8e6, #03536c);
   min-height: 100vh;
   text-align: center;
 }
 
-/* ------------------- HEADER ------------------- */
+/* ------------------- HEADER DE EVENTOS ------------------- */
 .header-container {
-  position: relative;      
-  text-align: center;     
+  text-align: center;
   margin-bottom: 30px;
-}
-
-.header-container .logo {
-  position: absolute;      
-  left: 0;                
-  top: 50%;                
-  transform: translateY(-50%);
-  width: 200px;          
-  height: auto;
 }
 
 .header-container h1 {
   font-size: 2.5rem;
-  margin: 0;
-}
-
-
-@media (max-width: 600px) {
-  .header-container .logo {
-    width: 120px;          
-  }
-  .header-container h1 {
-    font-size: 1.8rem;
-  }
-}
-
-.logo {
-  width: 250px;      
-  height: auto;
-  display: block;
-  margin: 0 auto 30px auto; 
-}
-
-
-.special-reservations h1 {
-  font-size: 2.5rem;
   color: #2c3e50;
-  margin-bottom: 30px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 0;
 }
 
 /* ------------------- LISTA DE EVENTOS ------------------- */
@@ -82,7 +125,6 @@
   border-radius: 12px;
   margin-bottom: 15px;
 }
-
 
 .event-card:hover {
   transform: translateY(-5px);
@@ -186,7 +228,7 @@ button:hover {
 .menu {
   margin-top: 40px;
   display: flex;
-  flex-direction: column; /* Botón abajo */
+  flex-direction: column;
   align-items: center;
 }
 
@@ -198,19 +240,17 @@ button:hover {
   text-align: center;
 }
 
-/* Menú horizontal centrado si pocos elementos, scroll si muchos */
 .menu-items {
-  display: inline-flex; /* inline-flex permite centrar naturalmente */
+  display: inline-flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 20px;
   padding: 10px 0 20px 0;
   width: 100%;
-  justify-content: center; /* Centrado si pocos elementos */
+  justify-content: center;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
-
 
 .menu-items::-webkit-scrollbar {
   height: 8px;
@@ -237,7 +277,6 @@ button:hover {
   align-items: center;
 }
 
-
 .menu-item img.menu-image {
   width: 100%;
   height: 120px;
@@ -255,59 +294,6 @@ button:hover {
 
 .menu button {
   margin-top: 20px;
-}
-/* ------------------- HEADER Y LOGO RESPONSIVO ------------------- */
-.header-container {
-  position: relative;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.header-container .logo {
-  max-width: 100%;        /* Se ajusta al ancho disponible */
-  width: 250px;            /* Tamaño inicial en pantallas grandes */
-  height: auto;
-  display: block;
-  margin: 0 auto;          /* Centrado horizontal */
-  object-fit: contain;     /* Mantiene proporción de la imagen */
-}
-
-/* Ajuste del título dentro del header */
-.header-container h1 {
-  font-size: 2.5rem;
-  margin: 0;
-  padding-top: 25px;      /* Espacio para que no se superponga con el logo */
-}
-
-/* ------------------- RESPONSIVIDAD ------------------- */
-@media (max-width: 1024px) {
-  .header-container .logo {
-    width: 250px;
-  }
-  .header-container h1 {
-    font-size: 2.2rem;
-    padding-top: 22px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-container .logo {
-    width: 200px;
-  }
-  .header-container h1 {
-    font-size: 1.8rem;
-    padding-top: 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-container .logo {
-    width: 150px;
-  }
-  .header-container h1 {
-    font-size: 1.5rem;
-    padding-top: 15px;
-  }
 }
 
 /* ------------------- MODAL ------------------- */
@@ -368,5 +354,3 @@ button:hover {
 .modal-buttons button {
   padding: 8px 14px;
 }
-
-
