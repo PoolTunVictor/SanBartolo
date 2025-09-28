@@ -1,8 +1,8 @@
 <div class="special-reservations">
-  <!-- Encabezado con logo y título -->
+  
   <div class="header-container">
     <img src="assets/logo.png" alt="Logo del Restaurante" class="logo">
-    <h1>Eventos Especiales</h1>
+    <h1>EVENTOS ESPECIALES</h1>
   </div>
 
   <!-- Lista de eventos -->
@@ -25,6 +25,9 @@
         <p>Incluye: {{ pkg.entry }}, {{ pkg.main }}, {{ pkg.drink }}, {{ pkg.dessert }}</p>
         <p><strong>Precio: ${{ pkg.price }}</strong></p>
         <button (click)="reserve(pkg)">Reservar</button>
+        <div *ngIf="pkg.noAvailability" class="confirmation-message error">
+          {{ pkg.noAvailability }}
+        </div>
       </div>
     </div>
   </div>
@@ -32,10 +35,12 @@
   <!-- Menú exclusivo del evento -->
   <div *ngIf="selectedEvent" class="menu">
     <h2>Menú exclusivo</h2>
-    <ul>
-      <li *ngFor="let item of selectedEvent.menu">{{ item }}</li>
-    </ul>
-    
+    <div class="menu-items">
+      <div class="menu-item" *ngFor="let item of selectedEvent.menu">
+        <img [src]="item.image" alt="{{ item.name }}" class="menu-image">
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
     <button (click)="selectedEvent = null">Ver solo Eventos Especiales</button>
   </div>
 </div>
@@ -59,8 +64,8 @@
         <option value="8:00 PM">8:00 PM</option>
         <option value="8:30 PM">8:30 PM</option>
         <option value="9:00 PM">9:00 PM</option>
-        <option value="9:30 PM">9:30 PM</option>
-        <option value="10:00 PM">10:00 PM</option>
+
+  
       </select>
 
       <div class="modal-buttons">
@@ -69,8 +74,7 @@
       </div>
     </form>
 
-    <!-- Mensaje de confirmación o error -->
-    <div *ngIf="confirmationMessage" [ngClass]="{'confirmation-message': true, 'error': isError}">
+    <div *ngIf="confirmationMessage && showReservationModal" [ngClass]="{'confirmation-message': true, 'error': isError}">
       {{ confirmationMessage }}
     </div>
   </div>

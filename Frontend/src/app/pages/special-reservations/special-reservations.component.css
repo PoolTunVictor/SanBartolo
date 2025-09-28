@@ -1,3 +1,4 @@
+/* ------------------- CONTENEDOR GENERAL ------------------- */
 .special-reservations {
 
   padding: 30px;
@@ -7,18 +8,19 @@
   text-align: center;
 }
 
+/* ------------------- HEADER ------------------- */
 .header-container {
-  position: relative;      /* Permite que el logo sea absoluto */
-  text-align: center;      /* Título centrado */
+  position: relative;      
+  text-align: center;     
   margin-bottom: 30px;
 }
 
 .header-container .logo {
-  position: absolute;      /* Logo fuera del flujo normal */
-  left: 0;                 /* Alineado a la izquierda */
-  top: 50%;                /* Centrado vertical */
+  position: absolute;      
+  left: 0;                
+  top: 50%;                
   transform: translateY(-50%);
-  width: 200px;            /* Tamaño grande pero controlado */
+  width: 200px;          
   height: auto;
 }
 
@@ -27,10 +29,10 @@
   margin: 0;
 }
 
-/* Responsive para móviles */
+
 @media (max-width: 600px) {
   .header-container .logo {
-    width: 120px;          /* Reducimos tamaño en móviles */
+    width: 120px;          
   }
   .header-container h1 {
     font-size: 1.8rem;
@@ -52,7 +54,7 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
-
+/* ------------------- LISTA DE EVENTOS ------------------- */
 .events {
   display: flex;
   justify-content: center;
@@ -99,7 +101,7 @@
   margin-bottom: 15px;
 }
 
-
+/* ------------------- BOTONES ------------------- */
 button {
   background: linear-gradient(135deg, #ba940b, #e6b800);
   color: white;
@@ -116,7 +118,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-
+/* ------------------- PAQUETES ------------------- */
 .packages {
   margin-top: 40px;
 }
@@ -137,13 +139,15 @@ button:hover {
   box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
   text-align: center;
-   display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .package-card:hover {
   transform: scale(1.05);
 }
+
 .package-image {
   width: 100%;
   height: 150px;
@@ -157,43 +161,156 @@ button:hover {
   margin-bottom: 10px;
 }
 
+/* ------------------- MENSAJES DE CONFIRMACIÓN ------------------- */
+.confirmation-message {
+  background: #d4edda;
+  color: #155724;
+  border: 2px solid #c3e6cb;
+  padding: 15px;
+  margin: 10px auto;
+  border-radius: 12px;
+  font-weight: bold;
+  text-align: center;
+  max-width: 500px;
+  white-space: pre-line;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
+.confirmation-message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 2px solid #f5c6cb;
+}
+
+/* ------------------- MENÚ EXCLUSIVO HORIZONTAL ------------------- */
 .menu {
   margin-top: 40px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column; /* Botón abajo */
+  align-items: center;
 }
 
 .menu h2 {
   color: #2c3e50;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-.menu ul {
-  list-style: none;
-  padding: 0;
+/* Menú horizontal centrado si pocos elementos, scroll si muchos */
+.menu-items {
+  display: inline-flex; /* inline-flex permite centrar naturalmente */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 0 20px 0;
+  width: 100%;
+  justify-content: center; /* Centrado si pocos elementos */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-.menu li {
-  padding: 8px;
-  background: #f1f5f9;
-  border-radius: 8px;
-  margin: 6px 0;
+
+.menu-items::-webkit-scrollbar {
+  height: 8px;
+}
+.menu-items::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+.menu-items::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-item {
+  flex: 0 0 auto;
+  min-width: 160px;
+  background: linear-gradient(135deg, #fefefe, #f1f5f9);
+  padding: 15px 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.menu-item img.menu-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.menu-item p {
+  margin: 0;
   font-size: 1rem;
-  color: #333;
-  transition: background 0.2s ease;
+  font-weight: 500;
+  color: #34495e;
 }
 
-.menu li:hover {
-  background: #e2e8f0;
+.menu button {
+  margin-top: 20px;
+}
+/* ------------------- HEADER Y LOGO RESPONSIVO ------------------- */
+.header-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* ----------------- MODAL ----------------- */
+.header-container .logo {
+  max-width: 100%;        /* Se ajusta al ancho disponible */
+  width: 250px;            /* Tamaño inicial en pantallas grandes */
+  height: auto;
+  display: block;
+  margin: 0 auto;          /* Centrado horizontal */
+  object-fit: contain;     /* Mantiene proporción de la imagen */
+}
+
+/* Ajuste del título dentro del header */
+.header-container h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  padding-top: 25px;      /* Espacio para que no se superponga con el logo */
+}
+
+/* ------------------- RESPONSIVIDAD ------------------- */
+@media (max-width: 1024px) {
+  .header-container .logo {
+    width: 250px;
+  }
+  .header-container h1 {
+    font-size: 2.2rem;
+    padding-top: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container .logo {
+    width: 200px;
+  }
+  .header-container h1 {
+    font-size: 1.8rem;
+    padding-top: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container .logo {
+    width: 150px;
+  }
+  .header-container h1 {
+    font-size: 1.5rem;
+    padding-top: 15px;
+  }
+}
+
+/* ------------------- MODAL ------------------- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -252,23 +369,4 @@ button:hover {
   padding: 8px 14px;
 }
 
-/* Mensaje de confirmación o error */
-.confirmation-message {
-  background: #d4edda;
-  color: #155724;
-  border: 2px solid #c3e6cb;
-  padding: 15px;
-  margin: 10px auto;
-  border-radius: 12px;
-  font-weight: bold;
-  text-align: center;
-  max-width: 500px;
-  white-space: pre-line;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
 
-.confirmation-message.error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 2px solid #f5c6cb;
-}
