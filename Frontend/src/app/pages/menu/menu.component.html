@@ -1,0 +1,113 @@
+<header class="header">
+  <nav>
+    <a routerLink="/home" class="logo-link">
+      <img src="assets/LogoPng.png" alt="San Bartolo" class="logo-central">
+    </a>
+    <ul>
+      <li><a routerLink="/home">Inicio</a></li>
+      <li><a routerLink="/menu">Menú</a></li>
+      <li><a routerLink="/reservaciones">Reservaciones</a></li>
+      <li><a routerLink="/promociones">Promociones</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="main-layout">
+  <div class="sidebar">
+    <ul>
+      <li>Información de cuenta</li>
+      <li>Contáctanos</li>
+      <li>Redes sociales</li>
+    </ul>
+  </div>
+
+  <section class="content">
+    <div class="menu-container">
+      <div class="menu-header">
+        <h1>Nuestro Menú</h1>
+        <p>Deliciosas opciones para todos los gustos</p>
+      </div>
+
+  <div class="menu-image-container">
+    <img src="assets/fondo-menu.jpg" alt="Imagen de nuestro menú" class="menu-header-image">
+  </div>
+
+      <div class="categorias-selector">
+        <button 
+          *ngFor="let categoria of categorias" 
+          class="categoria-btn" 
+          [ngClass]="{'activa': categoriaSeleccionada === categoria}"
+          (click)="seleccionarCategoria(categoria)">
+          {{categoria}}
+        </button>
+      </div>
+
+      <div class="menu-items-container">
+        <h2 class="categoria-titulo">{{categoriaSeleccionada}}</h2>
+        <div class="items-grid">
+          <div *ngFor="let item of menu[categoriaSeleccionada]" class="menu-item">
+            <div class="item-imagen">
+
+              <img [src]="menuDetalles[categoriaSeleccionada][item].imagen" 
+                   [alt]="item"
+                   class="producto-imagen"
+                   (click)="verDetalles(categoriaSeleccionada, item)"
+                   onerror="this.src='https://via.placeholder.com/400x300/ff6600/ffffff?text=Imagen+No+Disponible'">
+            </div>
+            <div class="item-info">
+              <div class="item-title">
+                <h3>{{item}}</h3>
+                <span class="item-price">{{menuDetalles[categoriaSeleccionada][item].precio}}</span>
+              </div>
+              <button class="btn-detalles" (click)="verDetalles(categoriaSeleccionada, item)">
+                Ver detalles
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mostrarModal" class="modal-overlay" (click)="cerrarModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="cerrarModal()">×</button>
+
+        <div class="modal-header">
+          <h2>{{productoSeleccionado.nombre}}</h2>
+          <span class="modal-price">{{productoSeleccionado.precio}}</span>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-image">
+            <img [src]="productoSeleccionado.imagen" [alt]="productoSeleccionado.nombre" 
+                 onerror="this.src='https://via.placeholder.com/400x300/ff6600/ffffff?text=Imagen+No+Disponible'">
+          </div>
+
+          <div class="modal-details">
+            <div class="detail-section">
+              <h3>Descripción</h3>
+              <p>{{productoSeleccionado.descripcion}}</p>
+            </div>
+            <div class="detail-section">
+              <h3>Ingredientes</h3>
+              <p>{{productoSeleccionado.ingredientes}}</p>
+            </div>
+
+            <div class="whatsapp-section">
+              <a href="https://wa.me/?text=Hola,%20me%20interesa%20pedir%20{{productoSeleccionado.nombre}}" 
+                 target="_blank" 
+                 class="whatsapp-btn">
+                📲 Hacer pedido al Whatsapp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<footer class="footer">
+  <p>© 2025 Casa San Bartolo - Todos los derechos reservados</p>
+</footer>

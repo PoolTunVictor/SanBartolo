@@ -5,19 +5,21 @@
   </div>
   <nav>
     <ul>
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#">Menú</a></li>
-      <li><a href="#">Contacto</a></li>
+      <li><a routerLink="/">Inicio</a></li>
+      <li><a routerLink="/menu">Menú</a></li>
+      <li><a routerLink="/contacto">Contacto</a></li>
     </ul>
   </nav>
 </header>
 
+<!-- Aquí Angular cargará la página -->
+<router-outlet></router-outlet>
+
 <div class="hero">
   <h1>Bienvenidos a Casa San Bartolo</h1>
   <p>Disfruta de la mejor comida en un ambiente acogedor.</p>
-  <button class="btn-ver-menu">Ver Menú</button>
+    <a class="btn-ver-menu" routerLink="/menu">Ver Menú</a>
 </div>
-
 
 <footer class="footer">
   <p>© 2025 Restaurante San Bartolo. Todos los derechos reservados.</p>
