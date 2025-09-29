@@ -15,14 +15,15 @@
 <div class="special-reservations">
   <!-- Título de eventos -->
   <div class="header-container">
-    <h1>EVENTOS ESPECIALES</h1>
+    <h1>¡EVENTOS ESPECIALES!</h1>
+    <h2>¡Solo se pueden hacer 4 reservaciones por evento!</h2>
   </div>
 
   <!-- Lista de eventos -->
   <div class="events" *ngIf="!selectedEvent">
     <div class="event-card" *ngFor="let event of events">
       <img [src]="event.image" alt="{{ event.name }}" class="event-image">
-      <h2>{{ event.name }} - {{ event.date }}</h2>
+      <h2>{{ event.name }} </h2>
       <p>{{ event.description }}</p>
       <button (click)="selectEvent(event)">Ver Paquetes</button>
     </div>
@@ -30,7 +31,7 @@
 
   <!-- Paquetes del evento seleccionado -->
   <div *ngIf="selectedEvent" class="packages">
-    <h2>Paquetes para {{ selectedEvent.name }}</h2>
+    <h2>PAQUETES PARA: {{ selectedEvent.name }}</h2>
     <div class="packages-row">
       <div class="package-card" *ngFor="let pkg of selectedEvent.packages">
         <img [src]="pkg.image" alt="{{ pkg.name }}" class="package-image">
@@ -61,6 +62,8 @@
 <!-- Footer -->
 <footer class="global-footer">
   © 2025 SAN BARTOLO - Todos los derechos reservados
+  <p>📍 Dirección: Calle 17. Barrio San Luis Obispo</p>
+   <p>📱 WhatsApp:+52 1 234 567 890</p>
 </footer>
 
 <!-- Modal de Reservación -->

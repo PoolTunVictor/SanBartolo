@@ -13,34 +13,34 @@ body, html {
 
 /* ------------------- HEADER NORMAL ------------------- */
 .global-header {
-  position: relative; /* ya no es fixed */
+  position: relative; 
   top: 0;
   left: 0;
   width: 100%;
-  background: #145971;
+  background: #902525;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
-  height: 80px; /* alto fijo */
+  box-shadow: 0px 6px 15px rgba(238, 232, 232, 0.1);
+  height: 80px;
   z-index: 1000;
 }
 
 .global-header .logo-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 80px;
 }
 
 .global-header img {
-  width: 60px;
+  width:200px;
   height: auto;
 }
 
 .global-header h1 {
   font-size: 1.8rem;
-  color: #000000;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -51,7 +51,7 @@ body, html {
 
 .global-header nav a {
   text-decoration: none;
-  color: #000000;
+  color: #ffffff;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -62,23 +62,23 @@ body, html {
 
 /* ------------------- FOOTER NORMAL ------------------- */
 .global-footer {
-  position: relative; /* ya no es fixed */
+  position: relative; 
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 15px 30px;
-  background: #145971;
+  background: #902525;
   text-align: center;
-  color: #000000;
+  color: #ffffff;
   font-size: 0.9rem;
   box-shadow: 0px -6px 15px rgba(0,0,0,0.1);
-  height: 50px; /* alto fijo */
+  height: 75px;
 }
 
 /* ------------------- CONTENEDOR GENERAL ------------------- */
 .special-reservations {
   padding: 30px;
-  /* ya no hace falta padding-top porque el header no es fijo */
+
   background: linear-gradient(135deg, #b1c8e6, #03536c);
   min-height: 100vh;
   text-align: center;
@@ -99,11 +99,27 @@ body, html {
 
 /* ------------------- LISTA DE EVENTOS ------------------- */
 .events {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  justify-items: center;
+  margin: 10PX;
 }
+
+/* Ajuste para tablets */
+@media (max-width: 1024px) {
+  .events {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  }
+}
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+  .events {
+    grid-template-columns: 1fr; /* 1 columna */
+  }
+}
+
 
 .event-card {
   background: #ffffff;
